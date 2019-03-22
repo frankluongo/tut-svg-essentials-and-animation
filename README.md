@@ -69,5 +69,30 @@
 - Sketch things out
 
 ### Prototyping
--
+- Write in code
 
+### Sprites
+- Setting a negative start for an animation will give a more natural look
+
+### Atmospheric & Elemental Motion
+- Further away is less contrast and blurry
+- Does the air or environment effect movement?
+- Reduce precision allows for understanding
+
+
+## GreenSock
+
+### Tools Overview
+http://slides.com/sdrasner/adv-svg-2?token=FxyYIMcu#/3
+
+#### Correct Tools
+CSS / SCSS
+- Small sequences and simple interactions
+- Once you get more than 3... switch to:
+
+GSAP / Greensock
+- Great for sequencing and complex movement
+- Cross-browser consistency
+
+React Spring / React-Motion
+- Great for single movements that you'd like to look realistic
