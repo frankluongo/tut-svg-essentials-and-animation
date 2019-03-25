@@ -96,3 +96,31 @@ GSAP / Greensock
 
 React Spring / React-Motion
 - Great for single movements that you'd like to look realistic
+
+
+### Performance & GSAP
+Using CSS, check out these resources:
+- [Debugging CSS](https://css-tricks.com/debugging-css-keyframe-animations/)
+- [High Performance Animations](https://www.html5rocks.com/en/tutorials/speed/high-performance-animations/)
+- [Performant CSS](http://eng.wealthfront.com/2015/06/30/implementing-netflix-redesign/)
+
+
+Hardware acceleration cheat:
+```scss
+@mixin accelerate() {
+ transform: translateZ(0);
+ backface-visibility: hidden;
+ perspective: 1000px;
+}
+
+.foo {
+  @include accelerate();
+}
+```
+
+Not using CSS, good.
+- Check out the gsap cheatsheet
+
+
+### Exercise
+Take an SVG, and animate it with GreenSock. Use a timeline and the position parameter or labels. There are starter pens for reference in the repo: https://github.com/sdras/svg-workshop/
