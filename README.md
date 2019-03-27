@@ -124,3 +124,67 @@ Not using CSS, good.
 
 ### Exercise
 Take an SVG, and animate it with GreenSock. Use a timeline and the position parameter or labels. There are starter pens for reference in the repo: https://github.com/sdras/svg-workshop/
+## UI/UX Animation
+[Slides](http://slides.com/sdrasner/adv-svg-2?token=FxyYIMcu)
+
+### UI vs Standalone Animation
+
+#### UI/UX Animation
+The point of these is to smooth out the interaction of the interface
+
+- [Sample Icons Repo](https://github.com/sdras/vue-sample-svg-icons)
+  - `fill="currentColor"` will inherit color from text around it
+- [UX Choreography](https://codepen.io/sdras/pen/Kwjyzo)
+  - Using animation to enhance the UX of the website
+- Animation is great for transtioning from one state to another
+  - [Adding a List Item](https://cssanimation.rocks/list-items/)
+- [Great Navigation Example](https://www.concrete-matter.com/)
+
+#### Standalone Animation
+The purpose of this is to wow the user and keep them entertained
+- [Contact Form](http://codepen.io/sdras/full/LEorev)
+
+
+
+### Social Engineering With Animation
+- [Designing Interface Animation](https://rosenfeldmedia.com/books/designing-interface-animation/)
+
+#### Anticipatory Cues
+- [Anticipatory Study](https://www.viget.com/articles/experiments-in-loading-how-long-will-you-wait/)
+- Using animation can ease wait times
+- Use different types of animations for different events on the site
+
+#### SVG Illustration
+- SVG's are useful for adding a bit of pizazz to a block of text
+
+
+### Context Switching
+- [Example](https://codepen.io/sdras/full/qOdwdB)
+- Animation helps with context switching, [article here.](https://css-tricks.com/the-importance-of-context-shifting-in-ux-patterns/)
+- [It can help reveal importance as well](https://codepen.io/sdras/full/qOdWEP)
+
+### Improving an Existing UI Demo
+- [Trip Planner Demo](https://codepen.io/sdras/full/amJLxN)
+- Incorporate Animation into the experience of using the site
+
+### Interaction, JS Detection & Scaling
+- Animation is great for animating interactions and states
+- JavaScript can listen to CSS Events
+- You can use preset animations and scale up
+
+### Interaction & GSAP Timeline Functions
+```javascript
+tl.pause() // Pause timeline
+tl.resume() // Continue playback
+tl.restart() // Restart the timeline
+tl.play(X) // Play from Xs
+tl.play(-X) // Play Xs from end
+tl.seek(X) // Go to Xs or 'label'
+tl.reverse() // Reverse playback anytime
+tl.timeScale(x) // Speed up/slow down timeline
+tl.progress(0.5) // Skip to halfway
+```
+
+### Interaction Demo
+
+
