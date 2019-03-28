@@ -336,6 +336,278 @@ for (var i = 0; i < numWords; i++) {
 
 
 ### Relative Color Values
+**Codepen Examples:**
+- [Relative HSL Colors Example](https://codepen.io/sdras/pen/c647706356bf2e1b940d0d5c6fdbe1b4)
+- [Another Hue Changing Example](https://codepen.io/sdras/pen/YyXewa)
+- [Time Comparison Example](https://codepen.io/sdras/pen/RZGqxR)
+
+**Code Example:**
+```javascript
+//button hue
+function hued() {
+  var ch1 = "hsl(+=110%, +=0%, +=0%)",
+  tl = new TimelineMax({
+    paused: true
+  });
+
+  tl.add("hu");
+  tl.to(mult, 1.25, {
+      fill: ch1
+    }, "hu");
+  ...
+  tl.to(body, 1.25, {
+      backgroundColor: ch1
+    }, "hu");
+
+  return tl;
+}
+
+var hue = hued();
+```
+
+
+### Creating a Story Exercise
+**Prompt:** Combine 2 of the effects we just learned to tell a simple story with SVG animation:
+- DrawSVG
+- Motion Along a Path
+- SplitText
+- HSL Tween
+
+
+### MorphSVG
+**Codepen Examples:**
+- [Interchangeable Hipster](https://codepen.io/sdras/pen/BodKjP)
+- [CSS Tricks](https://codepen.io/sdras/pen/85b34f90de906d707b10e235de5959d5)
+- [Shape Index](https://codepen.io/sdras/pen/f4e735983d9972abd35d74062ea0e543)
+- [Live Coding Example](https://codepen.io/sdras/pen/eKLeao)
+  - [Live Coding Video](https://vimeo.com/292473138)
+- [Candle](https://codepen.io/sdras/pen/gaxGBB)
+- [SVG Menu](https://codepen.io/lbebber/pen/LELBEo)
+
+**How To Code Samples:**
+Point From One ID To Another
+```javascript
+TweenMax.to("#start", 1, {morphSVG:{shape:"#end"},
+   ease:Linear.easeNone});
+```
+This will convert one element to another by changing the path points
+
+---
+
+Convert To Path Data
+```javascript
+MorphSVGPlugin.convertToPath("circle, rect,
+  ellipse, line, polygon, polyline");
+```
+This is converting a rectangle or some other shape to paths so you can morph them
+
+---
+
+```javascript
+MorphSVGPlugin.convertToPath("#foo");
+```
+
+Use ShapeIndex
+```javascript
+TweenMax.to("#start", 1, {morphSVG:{shape:"#end",
+   shapeIndex:"1"}});
+```
+- This is for finely tuning morphs
+- Default is shapeIndex: "auto"
+- Load the extra plugin, and a GUI will come up
+- Usually auto will be correct, but you can pick
+- Use findShapeIndex(#start, #end)
+
+---
+
+Filters
+```html
+<defs>
+    <filter id="Blur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="blur"></feGaussianBlur>
+      <feColorMatrix in="blur" mode="matrix"
+       values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 19 -7" result="goo"></feColorMatrix>
+    </filter>
+  </defs>
+```
+
+---
+
+Naming
+```html
+    <path id="f-stable" class="st7" d="M133.5 265.5s-29.5 12-28-60.5 23.5-91.5 23.5-91.5-10
+       23-5.5 52.5 25.5 60.5 10 99.5z" />
+    <path id="f1" class="st9" d="M132.5 266.5s-29.5 12-28-60.5-1.2-108.3-1.2-108.3 17.8 39.8
+       22.3 69.3c4.6 29.5 22.4 60.5 6.9 99.5z" />
+    <path id="f2" class="st9" d="M127.3 266.3s-24 11.8-22.5-60.7 24.2-93.3 24.2-93.3-7.8
+       25.2-3.3 54.7c4.5 29.5 33.3 64.3 1.6 99.3z" />
+```
+
+---
+
+Flame
+```javascript
+MorphSVGPlugin.convertToPath("ellipse");
+
+function flame() {
+  var tl = new TimelineMax();
+
+  tl.add("begin");
+  tl.fromTo(blurNode, 2.5, {
+    attr: {
+      stdDeviation: 9
+    }
+  }, {
+    attr: {
+      stdDeviation: 3
+    }
+  }, "begin");
+  var num = 9;
+  for (var i = 1; i <= num; i++) {
+    tl.to(fStable, 1, {
+      morphSVG: {
+        shape: "#f" + i
+      },
+      opacity: ((Math.random() * 0.7) + 0.7),
+      ease: Linear.easeNone
+    }, "begin+=" + i);
+  }
+```
+
+### Bonus Demos
+**Codepen Examples**
+- [Catmull-Rom Spline](https://codepen.io/osublake/pen/BowJed)
+  - [Related Article](http://schepers.cc/getting-to-the-point)
+- [Catmull-Rom Spline Candle](https://codepen.io/sdras/full/EVRJqg)
+- [Exploding World](https://s.codepen.io/sdras/debug/VpYeNj)
+- [Sound Interaction Example](https://codepen.io/sdras/pen/zvXbGJ)
+- [Introvert Pen](https://codepen.io/sdras/pen/dPqRmP)
+
+**How To Code Samples:**
+
+Catmull-Rom Spline
+```javascript
+function solve(data) {
+
+  var size = data.length;
+  var last = size - 4;
+
+  var path = "M" + [data[0], data[1]];
+
+  for (var i = 0; i < size - 2; i +=2) {
+
+    var x0 = i ? data[i - 2] : data[0];
+    var y0 = i ? data[i - 1] : data[1];
+
+    var x1 = data[i + 0];
+    var y1 = data[i + 1];
+
+    var x2 = data[i + 2];
+    var y2 = data[i + 3];
+
+    var x3 = i !== last ? data[i + 4] : x2;
+    var y3 = i !== last ? data[i + 5] : y2;
+
+    var cp1x = (-x0 + 6 * x1 + x2) / 6;
+    var cp1y = (-y0 + 6 * y1 + y2) / 6;
+
+    var cp2x = (x1 + 6 * x2 - x3) / 6;
+    var cp2y = (y1 + 6 * y2 - y3) / 6;
+
+    path += "C" + [cp1x, cp1y, cp2x, cp2y, x2, y2];
+  }
+
+  return path;
+}
+```
+
+---
+
+Polygon Catmull-Rom Spline
+```javascript
+var poly = document.querySelector("polyline");
+var path = document.querySelector("path");
+
+var points = [
+  100,350,
+  200,100,
+  300,350,
+  400,150,
+  500,350,
+  600,200,
+  700,350
+];
+
+poly.setAttribute("points", points);
+path.setAttribute("d", solve(points));
+```
+
+---
+
+Exploding World
+```javascript
+tl.call(addAttr);
+  tl.fromTo(feTurb, 1, {
+    attr : {
+      baseFrequency: '0 0'
+    }
+  }, {
+    attr : {
+      baseFrequency: '0.8 1.2'
+    },
+    ease: Sine.easeOut
+  });
+  tl.to(feTurb, 1, {
+    attr : {
+      baseFrequency: '0 0'
+    },
+    ease: Sine.easeIn
+  });
+  tl.call(removeAttr);
+```
+
+Helpers
+```javascript
+// filter attribute helpers
+function addAttr() {
+  feTurb.setAttribute('baseFrequency', '0 0');
+}
+
+function removeAttr() {
+  var applyFilter = document.getElementById('applyFilter');
+  applyFilter.removeAttribute('filter');
+}
+```
+
+---
+
+Sound Example
+```javascript
+//balloon
+function balloonGrow(){
+  var balloon = $("#balloon")[0];
+  var radius = balloon.getAttribute("r");
+  var cySet = balloon.getAttribute("cy");
+  balloon.setAttribute('r', parseInt(radius) + 10);
+  balloon.setAttribute('cy', parseInt(cySet) - 10);
+  if (parseInt(radius) > 125) {
+    ion.sound.play("balloon-pop3");
+    var balloonTl = new TimelineMax();
+    balloonTl.add("pop");
+    balloonTl.to("#balloon", 0.05, {
+      scale: 5,
+      opacity: 0,
+      transformOrigin: "50% 50%",
+      ease: Circ.easeOut
+    }, "pop");
+    ...
+    setTimeout(function(){
+      balloon.setAttribute("r", "45");
+      balloon.setAttribute("cy", "233.5");
+    }, 200);
+  }
+}
+```
 
 
 ## Advanced SVGs
