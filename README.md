@@ -615,5 +615,47 @@ function balloonGrow(){
 
 
 ### Clipping & Masking
+**Notes**
+- SVG Support for clipping is very high
 
+**Codepen Samples:**
+- [Clipping Vs Masking](https://codepen.io/sdras/pen/d2a9315e310901a3d43ba3bdf8413c65)
+- [Clipping Vs Masking Article](https://css-tricks.com/masking-vs-clipping-use/)
+- [Animation in a Clipped Path](https://codepen.io/sdras/pen/wKMVYr)
+- [CSS Clip Path](https://codepen.io/sdras/pen/myExro)
+- [SVG Animation](https://codepen.io/sdras/pen/xOjAmV)
+- [GIF Masking](https://codepen.io/sdras/pen/BReNEN)
+- [Yoksel](https://codepen.io/yoksel/)
+
+
+**Code Examples:**
+How to Structure Clip Paths
+```html
+<defs>
+  <clipPath id="clippy">
+    <ellipse cx="276" cy="147" rx="272" ry="147"/>
+  </clipPath>
+</defs>
+```
+Styling For It
+```css
+.img {
+  clip-path: url(#clippy);
+}
+```
+
+
+### ViewBox
+**Codepen Samples**
+- [Dynamic Viewbox](https://codepen.io/sdras/pen/512230ed732f9b963ad3e50c8d4dcbb8)
+- [Animated ViewBox Data Visualization](https://codepen.io/sdras/pen/dXoLEJ)
+- [Flow Chart Demo](https://codepen.io/sdras/full/VjvGJM/)
+- [Bustle Flowcharts](https://www.bustle.com/flowcharts)
+
+
+### SVGOrigin
+**Codepen Samples**
+- [Cow and No HitTest](https://codepen.io/sdras/pen/863bd219acb1d6a016930c239af9050b)
+- [Cow Over The Moon](https://codepen.io/sdras/pen/doZReX)
+- [Hit Test in SVG](https://codepen.io/sdras/pen/MwxRBL)
 
